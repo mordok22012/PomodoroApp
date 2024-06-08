@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const DisplayContainer = styled.div`
   display: flex;
@@ -24,10 +23,20 @@ const DisplayContainer = styled.div`
 
 
 const Display = () => {
+  const {timeLeft, isBreak} = useSelector((state) => state.timer);
+  
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60;
+    return  `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
     return (
         <DisplayContainer>
-            <h3>Session</h3>
-            <span>25:00</span>
+            <h3 id="timer-label" style={{ color: timeLeft < 60 ? '#8B0F32' : '#fff' }}>
+              {isBreak ? "Break" : "Session"}
+            </h3>
+            <span id="time-left" style={{ color: timeLeft < 60 ? '#8B0F32' : '#fff' }}>{formatTime(timeLeft)}</span>
         </DisplayContainer>
     )
 }

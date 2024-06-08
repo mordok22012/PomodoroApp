@@ -13,7 +13,7 @@ const AppContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(to bottom, #174950, #008080);
-  color: #fff;  /* Color de texto blanco */
+  color: #fff;  
   font-family: Arial, sans-serif;
   font-size: 8px;
 

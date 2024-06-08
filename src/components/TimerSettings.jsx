@@ -1,6 +1,6 @@
-// src/components/TimerSettings.jsx
-import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { setBreakLength, setSessionLength } from '../redux/timerSlice';
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
 
@@ -41,21 +41,21 @@ const LengthControl = styled.div`
     font-size: 1.5rem;
     
   }
-
   
-
-  
+  svg {
+    cursor: pointer;
+  }
 `;
 
 
 
-const BreakLength = ({ breakLength, setBreakLength }) => (
+const BreakLength = ({breakLength, setBreakLength }) => (
   <div>
-    <h2 style={{textAlign: "center", }}>Break Length</h2>
+    <h2 id="break-label" style={{textAlign: "center", }}>Break Length</h2>
     <LengthControl>
-    <FaArrowDown />
-    <span> 5</span>
-    <FaArrowUp />
+    <FaArrowDown id="break-decrement" onClick={() => setBreakLength("-")} />
+    <span id="break-length"> {breakLength}</span>
+    <FaArrowUp id="break-increment" onClick={() => setBreakLength("+")} />
   </LengthControl>
   </div>
 );
@@ -63,60 +63,32 @@ const BreakLength = ({ breakLength, setBreakLength }) => (
 
 const SessionLength = ({ sessionLength, setSessionLength }) => (
   <div>
-    <h2  style={{textAlign: "center", }}>Session Length</h2>
+    <h2 id="session-label" style={{textAlign: "center", }}>Session Length</h2>
     <LengthControl>
-    <FaArrowDown />
-    <span>25</span>
-    <FaArrowUp />
+    <FaArrowDown id="session-decrement" onClick={() => setSessionLength("-")} />
+    <span id="session-length">{sessionLength}</span>
+    <FaArrowUp id="session-increment" onClick={() => setSessionLength("+")} />
   </LengthControl>
   </div>
 );
 
 
 const TimerSettings = () => {
+    const breakLength = useSelector((state) => state.timer.breakLength);
+    const sessionLength = useSelector((state) => state.timer.sessionLength);
+    const dispatch = useDispatch();
   return (
     <SettingsContainer>
-      <BreakLength/>
-      <SessionLength/>
+      <BreakLength  
+        breakLength = {breakLength} 
+        setBreakLength = {(value) => dispatch(setBreakLength(value))} />
+      <SessionLength
+        sessionLength={sessionLength}
+        setSessionLength={(value) => dispatch(setSessionLength(value))}
+      />
     </SettingsContainer>
   )
 }
 
-// Definir estilos para los subcomponentes
-/* 
 
-
-const BreakLength = ({ breakLength, setBreakLength }) => (
-  <LengthControl>
-    <h2>Break Length</h2>
-    <Button onClick={() => setBreakLength(breakLength - 1)}>-</Button>
-    <span>{breakLength} minutes</span>
-    <Button onClick={() => setBreakLength(breakLength + 1)}>+</Button>
-  </LengthControl>
-);
-
-const SessionLength = ({ sessionLength, setSessionLength }) => (
-  <LengthControl>
-    <h2>Session Length</h2>
-    <Button onClick={() => setSessionLength(sessionLength - 1)}>-</Button>
-    <span>{sessionLength} minutes</span>
-    <Button onClick={() => setSessionLength(sessionLength + 1)}>+</Button>
-  </LengthControl>
-);
-
-const TimerSettings = () => {
-  const [breakLength, setBreakLength] = useState(5);
-  const [sessionLength, setSessionLength] = useState(25);
-
-  return (
-    <SettingsContainer>
-      <BreakLength breakLength={breakLength} setBreakLength={setBreakLength} />
-      <SessionLength sessionLength={sessionLength} setSessionLength={setSessionLength} />
-    </SettingsContainer>
-  );
-};
-
-export default TimerSettings;
-
-*/
 export default TimerSettings;

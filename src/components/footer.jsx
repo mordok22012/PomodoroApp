@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: .8rem;
+    font-size: 1rem;
 
     h4 {
         color: #8B0F32 ;
@@ -13,6 +12,7 @@ const FooterContainer = styled.footer`
 
     span {
         color: #8B0F32;
+        padding-bottom: 1rem
     }
 
     @media (min-width: 600px) {
@@ -20,7 +20,7 @@ const FooterContainer = styled.footer`
         font-size: 1rem;
         
       }
-    
+
       
 `;
 
