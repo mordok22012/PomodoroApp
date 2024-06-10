@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   breakLength: 5,
   sessionLength: 25,
-  timeLeft: 25 * 60,
+  timeLeft: 1500,
   isRunning: false,
   isBreak : false,
   
@@ -56,7 +56,7 @@ const timerSlice = createSlice({
         state.timeLeft -= 1;
       }else {
         state.isBreak = !state.isBreak;
-        state.timeLeft = state.isBreak ? 5 * 60 : 25 * 60;
+        state.timeLeft = state.isBreak ? state.breakLength * 60 : state.sessionLength * 60;
       }
     }
   },

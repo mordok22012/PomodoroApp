@@ -24,6 +24,7 @@ const PlayPauseAndReset = () => {
             // Starts an interval that dispatches the countdown action every second
             timer = setInterval(() => {
                 dispatch(countdown());
+                
             },1000);
         }
         // Clear the span when the component is unmounted or when "isRunning" changes
@@ -33,8 +34,9 @@ const PlayPauseAndReset = () => {
     // Effect hook to play the sound when the timer reaches 0
     useEffect(() => {
         if (timeLeft === 0) {
-            const audio = new Audio(sound);
+            const audio = document.getElementById('beep');
             audio.play();
+
         }
     }, [timeLeft])
 
@@ -43,7 +45,7 @@ const PlayPauseAndReset = () => {
 
     const handleReset = () => {
         dispatch(reset());
-        const audio = new Audio(sound);
+        const audio = document.getElementById('beep');
         audio.pause();
         audio.currentTime = 0;
 
@@ -56,6 +58,7 @@ const PlayPauseAndReset = () => {
                 <FaPause />
             </div>
             <VscDebugRestart id="reset" onClick={handleReset}/>
+            <audio id="beep" src={sound} preload="auto" />
         </ButtonsContainer>
     );
 }
