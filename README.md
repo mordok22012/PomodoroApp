@@ -7,7 +7,7 @@ Cronómetro productivo con ciclos Pomodoro, botones de control, sonido de alerta
 
 ## Demo
 
-👉 [Demo](https://weatherapp-weatherapi.netlify.app/)
+👉 [Demo](https://pomodoroapp25-o-clock.netlify.app/)
 
 
 
