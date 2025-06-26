@@ -1,9 +1,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import TimerSettings from './components/TimerSettings';
-import Display from './components/display';
-import PlayPauseAndReset from './components/playPauseAndReset';
+import Timer from './components/timer';
 import Footer from './components/footer';
 
 const AppContainer = styled.div`
@@ -42,9 +40,7 @@ function App() {
   return (
    <AppContainer>
       <h1>25 + 5 Clock</h1>
-      <TimerSettings />
-      <Display />
-      <PlayPauseAndReset />
+      <Timer />
       <Footer />
       
     </AppContainer>
